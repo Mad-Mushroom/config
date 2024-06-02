@@ -50,11 +50,19 @@ function pm_upgrade(){
 #################
 
 function c_copyconfig(){
-	cp ./res/vimrc ~/.vimrc
+	mkdir ~/.config/nvim
+    cp ./conf/init.vim ~/.config/nvim/init.vim
 }
 
 function c_installconfig(){
-
+    cd ~
+    curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    sudo npm i -g yarn
+    cd ~/.vim/plugged/coc.nvim/
+    yarn install
+    echo ""
+    echo "Open VIM or NeoVIM, then use ':CocInstall coc-clangd'."
 }
 
 ################
@@ -96,14 +104,6 @@ function o_i386gcc(){
 ###########
 # general #
 ###########
-
-function readconfig(){
-	
-}
-
-function installfromconfig(){
-
-}
 
 function installeverything(){
 	echo "Initializing..."
